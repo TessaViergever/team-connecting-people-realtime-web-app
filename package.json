@@ -1,0 +1,33 @@
+{
+  "name": "team-connecting-people-realtime-web-app",
+  "version": "1.0.0",
+  "description": "Sprint 11 Realtime Web App | Tamagotchi voor Plant Swap",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TessaViergever/team-connecting-people-realtime-web-app.git"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "socket.io",
+    "node",
+    "node.js"
+  ],
+  "author": "Michelle & Tessa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TessaViergever/team-connecting-people-realtime-web-app/issues"
+  },
+  "homepage": "https://github.com/TessaViergever/team-connecting-people-realtime-web-app#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "socket.io": "^4.6.1"
+  }
+}
