@@ -1,0 +1,534 @@
+:root {
+  --primary-color: #4e7141;
+  --secondary-color: #f26f21;
+  --tertiairy-color: #f6f7f9;
+  --text-color-p: #6a6a6a;
+  --font-size-h1: 2.2rem;
+  --font-size-h2: 1.6rem;
+  --font-size-p: 1rem;
+  --font-style-h1: "murecho";
+  --font-style-h2: "mulish";
+  --font-style-p: "arial";
+  --font-weight-h2: "600";
+  --line-height: 1.4rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+}
+
+h1 {
+  color: var(--primary-color);
+  font-family: var(--font-style-h1);
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  color: var(--primary-color);
+  font-family: var(--font-style-h2);
+  font-size: var(--font-size-h2);
+}
+
+p {
+  color: var(--text-color-p);
+  font-family: var(--font-style-p);
+  font-size: var(--font-size-p);
+}
+
+header {
+  width: 100%;
+  height: auto;
+}
+
+main {
+}
+
+section {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.box {
+  border: 1px solid blue;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.pot {
+  border: 1px solid rgb(125, 205, 45);
+  position: absolute;
+  width: 28%;
+  height: 14%;
+  bottom: 47px;
+  left: 38%;
+  background: #fcaa67;
+  -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  box-shadow: inset 0 16px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.pot-top {
+  position: absolute;
+  width: 33.5%;
+  height: 5%;
+  bottom: 19%;
+  left: 35%;
+  background: #fcaa67;
+  border-radius: 3px;
+  z-index: 1000;
+}
+
+.stem {
+  border: 1px solid orange;
+  position: absolute;
+  width: 2%;
+  height: 15%;
+  left: 49%;
+  bottom: 19%;
+  background: #70b77e;
+  /* display: none; pas aanzetten als javascript wordt toegepast, zorg ervoor dat het plantje niet meer zichtbaar is  */
+  transition: height 0.15s ease-out;
+}
+
+.leaf {
+  position: absolute;
+  width: 700%;
+  height: 10%;
+  border-radius: 50%;
+  background: #70b77e;
+}
+
+.leaf .line {
+  position: absolute;
+  width: 80%;
+  height: 1%;
+  background: rgba(0, 0, 0, 0.1);
+  top: 48%;
+}
+
+.leaf01 {
+  top: 70%;
+  left: 50%;
+  transform: rotate(-25deg);
+}
+
+.leaf02 {
+  top: 50%;
+  right: 50%;
+  transform: rotate(205deg);
+}
+
+.leaf03 {
+  top: 30%;
+  left: 50%;
+  transform: rotate(-25deg);
+}
+
+.leaf04 {
+  top: 20%;
+  right: 50%;
+  transform: rotate(205deg);
+}
+
+.leaf05 {
+  top: -17%;
+  left: -120%;
+  transform: rotate(-60deg);
+}
+
+.leaf06 {
+  top: -9%;
+  right: 22%;
+  transform: rotate(195deg);
+}
+
+/* --- ANIMATION --- */
+
+.stem,
+.leaf {
+  animation-duration: 1.2s !important;
+  animation-fill-mode: forwards;
+}
+
+/* stap 1 water geven grow  */
+.stem.rain {
+  display: block !important;
+  animation: grow 1s linear;
+}
+
+@keyframes grow {
+  0% {
+    bottom: -40%;
+    width: 1%;
+  }
+
+  100% {
+    bottom: 20%;
+    width: 2%;
+  }
+}
+
+/* stap 2 water geven grow */
+
+.stem.rain .leaf {
+  animation: leafGrow 1s linear 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes leafGrow {
+  0% {
+    width: 0%;
+    height: 0%;
+  }
+
+  100% {
+    width: 700%;
+    height: 10%;
+  }
+}
+
+/* stap 3 water geven grow */
+
+.stem.rain .leaf05 {
+  animation: topLeafRight 1s linear 1;
+}
+
+@keyframes topLeafRight {
+  0% {
+    top: 5%;
+    width: 0%;
+    height: 0%;
+    left: 10%;
+  }
+
+  100% {
+    width: 700%;
+    height: 10%;
+    top: -17%;
+    left: -120%;
+  }
+}
+
+/* stap 4 water geven grow */
+
+stem.rain .leaf06 {
+  animation: topLeafLeft 1s linear 1;
+}
+
+@keyframes topLeafLeft {
+  0% {
+    top: 0%;
+    width: 0%;
+    height: 0%;
+  }
+
+  100% {
+    width: 700%;
+    height: 10%;
+    top: -9%;
+  }
+}
+
+@keyframes show {
+  5% {
+    opacity: 1;
+  }
+  7% {
+    transform: rotate(40deg);
+  }
+  24% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+}
+.water-jar:before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 0;
+  left: 40px;
+  top: 5px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 40px solid #c6f;
+  transform: rotate(65deg);
+}
+.water-jar:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 30px;
+  top: 5px;
+  left: -20px;
+  border-radius: 20px 0 0 20px;
+  background-color: transparent;
+  border: 5px solid #c5f;
+  box-shadow: 70px -4px 0 -6px #c6f;
+}
+
+.water {
+  position: absolute;
+  width: 20px;
+  height: 50px;
+  border-radius: 50% 50% 0 0;
+  border-right: 4px dashed #0bf;
+  bottom: 180px;
+  left: 115px;
+  z-index: 1;
+  opacity: 0;
+  animation: water 5s linear;
+}
+@keyframes water {
+  7% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  21% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 0;
+  }
+}
+.water:before {
+  position: absolute;
+  content: "";
+  width: 45px;
+  height: 52px;
+  top: -2px;
+  left: -10px;
+  border-radius: 70% 80% 20% 0;
+  border-right: 4px dashed #0bf;
+  z-index: 1;
+}
+.water:after {
+  position: absolute;
+  content: "";
+  width: 65px;
+  height: 62px;
+  top: -10px;
+  left: -10px;
+  border-radius: 70% 90% 28% 0;
+  border-right: 4px dashed #0bf;
+  z-index: 1;
+}
+
+.seed1 {
+  position: absolute;
+  right: 50%;
+  height: 45px;
+  width: 20px;
+  background: brown;
+  border-radius: 50%;
+  opacity: 0;
+  animation: dropseed1 1s linear;
+}
+
+@keyframes dropseed1 {
+  1% {
+    opacity: 1;
+  }
+  5% {
+    top: 0%;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    top: 90%;
+  }
+}
+
+/* SUN */
+.sun {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 25%;
+  left: 15%;
+}
+.circle {
+  height: 44px;
+  width: 44px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background-color: #ff0;
+  border-radius: 50%;
+}
+.sunrays {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  background-color: #ffdd4a;
+  box-shadow: 0 0 20px 3px #ff8, 0 0 80px 10px #ff6;
+  animation: rotate 12s linear infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.sunrays:before {
+  content: "";
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  background-color: #ffdd4a;
+  transform: rotate(30deg);
+}
+.sunrays:after {
+  content: "";
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  background-color: #ffdd4a;
+  transform: rotate(60deg);
+}
+/* FLOWER  */
+
+.flower {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 50px;
+  transform: rotate(180deg);
+  top: 62%;
+  z-index: 1;
+}
+
+.dot {
+  position: absolute;
+  top: 147px;
+  left: 24px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: #f8d545;
+  box-shadow: 0 0 0 4px #d85, 0 0 8px 4px #444, inset 0 0 8px #fd0;
+  opacity: 0;
+  animation: flower 2s linear forwards;
+  z-index: 1;
+}
+@keyframes flower {
+  72% {
+    opacity: 0;
+  }
+  74% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.petal {
+  position: absolute;
+  width: 0px;
+  height: 40px;
+  border-radius: 100% 0% 50% 50% /50% 0% 100% 50%;
+  background: linear-gradient(
+    185deg,
+    #941346 0%,
+    #e63b94 50%,
+    #ff5ab0 75%,
+    #ff7dc1 100%
+  );
+  opacity: 0;
+  animation: petal 2s linear forwards;
+}
+@keyframes petal {
+  72% {
+    opacity: 0;
+  }
+  84% {
+    opacity: 1;
+    width: 40px;
+  }
+  100% {
+    opacity: 1;
+    width: 40px;
+  }
+}
+.petal-1 {
+  top: 155px;
+  left: -9px;
+}
+.petal-2 {
+  top: 125px;
+  left: -18px;
+  transform: rotate(60deg);
+}
+.petal-3 {
+  top: 105px;
+  left: 5px;
+  transform: rotate(120deg);
+}
+.petal-4 {
+  top: 110px;
+  left: 35px;
+  transform: rotate(180deg);
+}
+.petal-5 {
+  top: 140px;
+  left: 42px;
+  transform: rotate(240deg);
+}
+.petal-6 {
+  top: 160px;
+  left: 18px;
+  transform: rotate(300deg);
+}
+
+/* JAVASCRIPT TOGGLE  */
+.add-sun {
+  display: none;
+}
+
+.add-water {
+  display: none;
+}
+
+.add-more-water {
+  display: none;
+}
+
+/* BUTTONS */
+
+.button-wrapper {
+  border: 1px solid rgb(51, 173, 82);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.button-wrapper button {
+  display: flex;
+  width: 10rem;
+  height: auto;
+  padding: 0.5rem;
+  align-items: center;
+  flex-direction: column;
+  color: var(--primary-color);
+}
+
+.button-wrapper svg {
+  stroke: var(--primary-color);
+  width: 1rem;
+}
