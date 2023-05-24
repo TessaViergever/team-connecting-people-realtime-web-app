@@ -1,3 +1,8 @@
+//SOCKET.OI
+let ioServer = io();
+
+//ANIMATION PLANT
+
 let seedButton = document.querySelector(".drop-seed");
 console.log(seedButton);
 
