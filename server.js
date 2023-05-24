@@ -5,6 +5,7 @@ import express from "express";
 const app = express();
 const http = createServer(app);
 const ioServer = new Server(http);
+const port = process.env.PORT || 4242;
 
 import indexRoute from "./routes/index.js";
 import tamagotchiRoute from "./routes/tamagotchi.js";
@@ -12,31 +13,23 @@ import tamagotchiRoute from "./routes/tamagotchi.js";
 // Start de socket.io server op
 ioServer.on("connection", (socket) => {
   console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
 });
-
-// Maak een nieuwe express app
-const server = express();
-
-// Stel het poortnummer in
-server.set("port", process.env.PORT || 8080);
 
 // Stel de views in
-server.set("view engine", "ejs");
-server.set("views", "./views");
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 //  Stel de public map in
-server.use(express.static("public"));
+app.use(express.static("public"));
 
 // Stel de files routes in
-server.use("/", indexRoute);
-server.use("/tamagotchi", tamagotchiRoute);
+app.use("/", indexRoute);
+app.use("/tamagotchi", tamagotchiRoute);
 
-server.listen(server.get("port"), () => {
-  console.log(
-    `Application started on http://localhost:${server.get("port")}/tamagotchi`
-  );
+// Start een http server op het ingestelde poortnummer en log de url
+http.listen(port, () => {
+  console.log("listening on http://localhost:" + port + `/tamagotchi`);
 });
-// // Start een http server op het ingestelde poortnummer en log de url
-// http.listen(port, () => {
-//   console.log("listening on http://localhost:" + port);
-// });
