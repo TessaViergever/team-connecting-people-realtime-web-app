@@ -3,21 +3,77 @@ let ioServer = io();
 
 //ANIMATION PLANT
 
-let seedButton = document.querySelector(".drop-seed");
-console.log(seedButton);
+document.addEventListener("DOMContentLoaded", function () {
+  let dropSeedButton = document.querySelector(".drop-seed");
+  let addSunButton = document.querySelector(".add-sun");
+  let addWaterButton = document.querySelector(".add-water");
+  let addMoreWaterButton = document.querySelector(".add-more-water");
+  let boxElement = document.querySelector(".box");
+  let stemElement = document.querySelector(".stem");
+  let flowerElement = null; // Will be set dynamically
 
-// De eventlistener reageert op een klik op dit element
-seedButton.addEventListener("click", function () {
-  let addSeed = document.createElement("div"); //Deze regel maakt een nieuw "div"-element aan en slaat het op in de variabele seed.
-  console.log(addSeed);
-  addSeed.className = "seed1"; //Deze regel voegt de klasse "seed1" toe aan het seed-element.
+  dropSeedButton.addEventListener("click", function () {
+    // Controleer of er op "drop-seed" is geklikt
+    let seed = document.createElement("div");
+    seed.className = "seed1";
+    boxElement.appendChild(seed);
+    dropSeedButton.style.display = "none";
+    addSunButton.style.display = "flex";
+  });
+  addSunButton.addEventListener("click", function () {
+    // Controleer of er op "add-sun" is geklikt
+    let sun = document.createElement("div");
+    sun.innerHTML =
+      "<div class='sun'><div class='sunrays'></div><div class='circle'></div></div>";
+    boxElement.appendChild(sun);
+    addSunButton.style.display = "none";
+    addWaterButton.style.display = "flex";
+  });
 
-  let box = document.querySelector(".box");
-  box.appendChild(seed); // Deze regel selecteert het element met de klasse "box" en voegt het seed-element toe als een kind van dit element.
+  addWaterButton.addEventListener("click", function () {
+    stemElement.classList.add("rain");
+    let waterJar = document.createElement("div");
+    waterJar.className = "water-jar";
+    let water = document.createElement("div");
+    water.className = "water";
+    boxElement.appendChild(waterJar);
+    boxElement.appendChild(water);
+    addWaterButton.style.display = "none";
+    addMoreWaterButton.style.display = "flex";
+  });
 
-  let dropSeed = document.querySelector(".drop-seed");
-  dropSeed.classList.add("hidden"); //Deze regel selecteert het element met de klasse "drop-seed" en voegt de klasse "hidden" toe aan de classList van het element.
+  let counter = 1;
 
-  let addSun = document.querySelector(".add-sun");
-  addSun.classList.add("visible"); //Deze regel selecteert het element met de klasse "add-sun" en voegt de klasse "visible" toe aan de classList van het elemen
+  addMoreWaterButton.addEventListener("click", function () {
+    let waterJar = document.createElement("div");
+    waterJar.className = "water-jar";
+    let water = document.createElement("div");
+    water.className = "water";
+    boxElement.appendChild(waterJar);
+    boxElement.appendChild(water);
+    stemElement.style.height = "35%";
+
+    if (counter === 1) {
+      flowerElement = document.createElement("div");
+      flowerElement.className = "flower";
+      flowerElement.innerHTML =
+        "<div class='petal petal-1'></div><div class='dot'></div>";
+      boxElement.appendChild(flowerElement);
+    } else if (counter >= 2 && counter <= 6) {
+      let petal = document.createElement("div");
+      petal.className = "petal petal-" + counter;
+      flowerElement.appendChild(petal);
+    }
+
+    if (counter === 6) {
+      setTimeout(function () {
+        let couponCodeElement = document.querySelector(".plantje-volgroeid");
+        if (couponCodeElement) {
+          couponCodeElement.style.display = "block";
+        }
+      }, 1000);
+    }
+
+    counter++;
+  });
 });

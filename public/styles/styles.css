@@ -48,24 +48,39 @@ header {
 main {
 }
 
-section {
-  border: 1px solid green;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* GIETER */
+
+.water-jar {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  background-color: #1e628c;
+  border-radius: 5px;
+  bottom: 235px;
+  left: 65px;
+  opacity: 0;
+  box-shadow: inset -9px 0 15px #1e628c;
+  animation: show 10s linear;
 }
 
 .box {
-  border: 1px solid blue;
+  position: relative;
+  margin: auto;
+  display: block;
+  margin-top: 8%;
   width: 100vw;
   height: 100vh;
-  position: relative;
+  background: none;
 }
+/* PLANTEN POT */
 
 .pot {
-  border: 1px solid rgb(125, 205, 45);
   position: absolute;
   width: 28%;
   height: 14%;
@@ -89,24 +104,27 @@ section {
   z-index: 1000;
 }
 
+/* STAM PLANT */
+
 .stem {
-  border: 1px solid orange;
   position: absolute;
   width: 2%;
   height: 15%;
   left: 49%;
   bottom: 19%;
-  background: #70b77e;
-  /* display: none; pas aanzetten als javascript wordt toegepast, zorg ervoor dat het plantje niet meer zichtbaar is  */
+  background: var(--primary-color);
+  display: none;
   transition: height 0.15s ease-out;
 }
+
+/* BLADEREN PLANT  */
 
 .leaf {
   position: absolute;
   width: 700%;
   height: 10%;
   border-radius: 50%;
-  background: #70b77e;
+  background: var(--primary-color);
 }
 
 .leaf .line {
@@ -153,7 +171,7 @@ section {
   transform: rotate(195deg);
 }
 
-/* --- ANIMATION --- */
+/* --- PLANT -> ANIMATION --- */
 
 .stem,
 .leaf {
@@ -161,7 +179,6 @@ section {
   animation-fill-mode: forwards;
 }
 
-/* stap 1 water geven grow  */
 .stem.rain {
   display: block !important;
   animation: grow 1s linear;
@@ -179,8 +196,6 @@ section {
   }
 }
 
-/* stap 2 water geven grow */
-
 .stem.rain .leaf {
   animation: leafGrow 1s linear 1;
   animation-fill-mode: forwards;
@@ -197,8 +212,6 @@ section {
     height: 10%;
   }
 }
-
-/* stap 3 water geven grow */
 
 .stem.rain .leaf05 {
   animation: topLeafRight 1s linear 1;
@@ -220,9 +233,7 @@ section {
   }
 }
 
-/* stap 4 water geven grow */
-
-stem.rain .leaf06 {
+.stem.rain .leaf06 {
   animation: topLeafLeft 1s linear 1;
 }
 
@@ -254,6 +265,9 @@ stem.rain .leaf06 {
     opacity: 0;
   }
 }
+
+/* WATER GEVEN */
+
 .water-jar:before {
   position: absolute;
   content: "";
@@ -263,7 +277,7 @@ stem.rain .leaf06 {
   top: 5px;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 40px solid #c6f;
+  border-bottom: 40px solid #1e628c;
   transform: rotate(65deg);
 }
 .water-jar:after {
@@ -328,7 +342,9 @@ stem.rain .leaf06 {
   z-index: 1;
 }
 
-.seed1 {
+/* ZAADJE  */
+
+.seed1 /* het zaadje */ {
   position: absolute;
   right: 50%;
   height: 45px;
@@ -354,7 +370,8 @@ stem.rain .leaf06 {
   }
 }
 
-/* SUN */
+/* ZON */
+
 .sun {
   height: 0;
   width: 0;
@@ -362,6 +379,7 @@ stem.rain .leaf06 {
   top: 25%;
   left: 15%;
 }
+
 .circle {
   height: 44px;
   width: 44px;
@@ -371,6 +389,7 @@ stem.rain .leaf06 {
   background-color: #ff0;
   border-radius: 50%;
 }
+
 .sunrays {
   height: 50px;
   width: 50px;
@@ -379,11 +398,13 @@ stem.rain .leaf06 {
   box-shadow: 0 0 20px 3px #ff8, 0 0 80px 10px #ff6;
   animation: rotate 12s linear infinite;
 }
+
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
   }
 }
+
 .sunrays:before {
   content: "";
   height: 50px;
@@ -392,6 +413,7 @@ stem.rain .leaf06 {
   background-color: #ffdd4a;
   transform: rotate(30deg);
 }
+
 .sunrays:after {
   content: "";
   height: 50px;
@@ -400,7 +422,8 @@ stem.rain .leaf06 {
   background-color: #ffdd4a;
   transform: rotate(60deg);
 }
-/* FLOWER  */
+
+/* BLOEM */
 
 .flower {
   position: absolute;
@@ -426,6 +449,7 @@ stem.rain .leaf06 {
   animation: flower 2s linear forwards;
   z-index: 1;
 }
+
 @keyframes flower {
   72% {
     opacity: 0;
@@ -437,6 +461,9 @@ stem.rain .leaf06 {
     opacity: 1;
   }
 }
+
+/* BLOEM - BLOEMBLAADJES  */
+
 .petal {
   position: absolute;
   width: 0px;
@@ -465,37 +492,78 @@ stem.rain .leaf06 {
     width: 40px;
   }
 }
+
 .petal-1 {
   top: 155px;
   left: -9px;
 }
+
 .petal-2 {
   top: 125px;
   left: -18px;
   transform: rotate(60deg);
 }
+
 .petal-3 {
   top: 105px;
   left: 5px;
   transform: rotate(120deg);
 }
+
 .petal-4 {
   top: 110px;
   left: 35px;
   transform: rotate(180deg);
 }
+
 .petal-5 {
   top: 140px;
   left: 42px;
   transform: rotate(240deg);
 }
+
 .petal-6 {
   top: 160px;
   left: 18px;
   transform: rotate(300deg);
 }
 
-/* JAVASCRIPT TOGGLE  */
+/* BUTTON */
+
+button {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  background-color: #a9ddd6;
+  border: none;
+}
+
+button h3 {
+  border: solid 1px;
+  padding: 10px 30px;
+  border-radius: 23px;
+  background-color: #4e7141;
+  color: white;
+  margin: 10px 0px;
+  box-shadow: 3px 3px;
+}
+
+/* GROND */
+
+/* .ground {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 47px;
+  background-color: greenyellow;
+}
+*/
+
+/*  */
+
 .add-sun {
   display: none;
 }
@@ -508,8 +576,33 @@ stem.rain .leaf06 {
   display: none;
 }
 
-/* BUTTONS */
+/* SUCCES BERICHT */
 
+.plantje-volgroeid {
+  position: absolute;
+  left: 28%;
+  top: 13%;
+  border: solid 1px white;
+  padding: 9px 23px;
+  border-radius: 8px;
+  font-size: 22px;
+  display: none;
+}
+
+.plantje-volgroeid:before {
+  content: "Gefeliciteerd, het plantje is volgroeid!🥳";
+  font-size: 9px;
+  position: absolute;
+  top: -23px;
+  left: 12%;
+  background: #f26f21;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+/* BUTTONS */
+/*
 .button-wrapper {
   border: 1px solid rgb(51, 173, 82);
   display: flex;
@@ -532,3 +625,4 @@ stem.rain .leaf06 {
   stroke: var(--primary-color);
   width: 1rem;
 }
+*/
