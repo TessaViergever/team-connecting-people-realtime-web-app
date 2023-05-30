@@ -21,3 +21,15 @@ seedButton.addEventListener("click", function () {
   let addSun = document.querySelector(".add-sun");
   addSun.classList.add("visible"); //Deze regel selecteert het element met de klasse "add-sun" en voegt de klasse "visible" toe aan de classList van het elemen
 });
+
+//INFO POP
+
+//spreek de section aan en sla het op als een variable
+var modal = document.querySelector('.info-pop');
+//spreek de button aan en sla het op als een variable
+var btn = document.getElementsByClassName("close")
+//als de knop 
+function closeModal(){
+  modal.style.display = "none"
+}
+

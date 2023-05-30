@@ -19,8 +19,7 @@
   box-sizing: border-box;
 }
 
-body {
-}
+
 
 h1 {
   color: var(--primary-color);
@@ -45,8 +44,6 @@ header {
   height: auto;
 }
 
-main {
-}
 
 section {
   border: 1px solid green;
@@ -56,8 +53,28 @@ section {
   align-items: center;
   gap: 1rem;
 }
+/* info pop */
+.info-pop{
+ 
+  background-color: #444;
+  margin: auto;
+  width: 30vw;
+  height: 80vh;
+  padding: 1rem;
+}
+.info-pop > h1{
+  color: #333467;
+  font-size: 1.2rem;
+  font-family: Arial;
+  font: bold;
+  line-height: 150%;
+ 
+}
+
+
 
 .box {
+  display: none;
   border: 1px solid blue;
   width: 100vw;
   height: 100vh;
