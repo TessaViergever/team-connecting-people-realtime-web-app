@@ -12,10 +12,18 @@ import tamagotchiRoute from "./routes/tamagotchi.js";
 
 // Start de socket.io server op
 ioServer.on("connection", (socket) => {
+
   console.log("a user connected");
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
+
+  // stuurt step naar alle clients verbonden met socket
+  socket.on('step', (step) => {
+    ioServer.emit('step' , step)
+  });
+
 });
 
 // Stel de views in
