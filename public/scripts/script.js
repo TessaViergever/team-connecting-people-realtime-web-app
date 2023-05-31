@@ -122,7 +122,7 @@ var btn = document.getElementsByClassName("close")
 var potTop = document.querySelector('.pot-top')
 var pot = document.querySelector('.pot')
 
-
+//TODO kijk of display meer via css kan(maak issue)
 // als er op kruisje wordt gedrukt dan sluit de modal en is het potje weer in beeld
 function closeModal(){
   modal.style.display = "none"
