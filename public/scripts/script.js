@@ -118,14 +118,20 @@ document.addEventListener("DOMContentLoaded", function () {
 var modal = document.querySelector('.info-pop');
 //spreek de button aan en sla het op als een variable
 var btn = document.getElementsByClassName("close")
+// haal pot top en pot op en sla dit op in een object.
+var potTop = document.querySelector('.pot-top')
+var pot = document.querySelector('.pot')
 
 
-// als er op kruisje wordt gedrukt dan sluit de modal
+// als er op kruisje wordt gedrukt dan sluit de modal en is het potje weer in beeld
 function closeModal(){
   modal.style.display = "none"
+  pot.style.display ="block"
+  potTop.style.display ="block"
 }
-//als de modal open is doet de start knop het niet
-// if(document.querySelector(".info-pop").style.display != "none") {
+//als de modal open hide de planten pot
+if(document.querySelector(".info-pop").style.display != "none") {
  
-//   dropSeedButton.disabled 
-// }
+  pot.style.display = "none"
+  potTop.style.display = "none"
+}
