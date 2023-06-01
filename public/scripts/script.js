@@ -9,6 +9,14 @@ let boxElement = document.querySelector(".box");
 let stemElement = document.querySelector(".stem");
 let flowerElement = null; // Will be set dynamically
 
+
+// State messages
+const errorState = document.querySelector('.error-state');
+console.log(errorState)
+
+const idealState = document.querySelector('.ideal-state');
+
+
 ioServer.on('step', (step) => {
   console.log(step)
   if (step==1){
@@ -24,6 +32,8 @@ ioServer.on('step', (step) => {
     step4()
   }
 });
+
+let counter = 1;
 
 function step1(){
   // Controleer of er op "drop-seed" is geklikt
@@ -84,7 +94,6 @@ function step4(){
       }
     }, 1000);
   }
-
   counter++;
 }
 
@@ -103,11 +112,54 @@ document.addEventListener("DOMContentLoaded", function () {
     ioServer.emit('step', 3);
   });
 
-  let counter = 1;
-
   addMoreWaterButton.addEventListener("click", function () {
     ioServer.emit('step', 4);
-
-    
   });
+
 });
+
+// ERROR STATE 
+
+// No connection
+ioServer.io.on('error', (error) => {
+  console.log(error);
+  console.log('geen verbinding');
+
+  idealState.style.display = 'none'
+  errorState.style.display = 'inline'
+})
+
+// Attempt to reconnect 
+ioServer.io.on('reconnect_attempt', (attempt) => {
+  console.log('attempt reconnection')
+})
+
+// Reconnect successful
+ioServer.io.on('reconnect', (attempt) => {
+  console.log(attempt);
+
+  idealState.style.display = 'inline'
+  errorState.style.display = 'none'
+})
+
+// Server checks connection Y/N?
+ioServer.io.on('ping', () => {
+  // ...
+})
+
+// Reconnect not successful
+ioServer.io.on('reconnect_error', (error) => {
+  console.log(error);
+
+  idealState.style.display = 'none'
+  errorState.style.display = 'inline'
+})
+
+// Reconnection attempts keep failing after x attempts
+// Reconnection attempts stop (try again button)
+ioServer.io.on('reconnect_failed', (error) => {
+  console.log(error);
+  
+  idealState.style.display = 'none'
+  errorState.style.display = 'inline'
+})

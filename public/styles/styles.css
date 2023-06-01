@@ -1,3 +1,10 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* 🥕 ROOT  */
 :root {
   --primary-color: #4e7141;
   --secondary-color: #f26f21;
@@ -11,21 +18,14 @@
   --font-style-p: "arial";
   --font-weight-h2: "600";
   --line-height: 1.4rem;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
+  --water-jar-color: #1e628c; 
 }
 
 h1 {
   color: var(--primary-color);
   font-family: var(--font-style-h1);
   font-size: var(--font-size-h1);
+  margin-left: 1rem;
 }
 
 h2 {
@@ -45,28 +45,38 @@ header {
   height: auto;
 }
 
-main {
+
+/* IDEAL STATE */
+.ideal-state {
+  
 }
+
+/* ERROR STATE */
+
+.error-state {
+  width: 100vw;
+  height: auto;
+ display: none;
+  }
+
+  .wrapper-error-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .wrapper-error-state p {
+    margin: 0 2rem; 
+  }
+
+  /* PLANT WRAPPER + BOX */
 
 .wrapper {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-/* GIETER */
-
-.water-jar {
-  position: absolute;
-  width: 40px;
-  height: 55px;
-  background-color: #1e628c;
-  border-radius: 5px;
-  bottom: 235px;
-  left: 65px;
-  opacity: 0;
-  box-shadow: inset -9px 0 15px #1e628c;
-  animation: show 10s linear;
 }
 
 .box {
@@ -75,11 +85,32 @@ main {
   display: block;
   margin-top: 8%;
   width: 100vw;
-  height: 100vh;
-  background: none;
+  height: 100vh; 
+  background-image: radial-gradient(circle at bottom left, rgba(255, 255, 0, 0.969), rgba(112, 162, 93, 0.5) 50%),
+  radial-gradient(circle at top left, rgba(112, 162, 93, 0.5), rgba(255, 0, 0, 0) 30%),
+  radial-gradient(circle at center right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 20%);
+background-size: 200% 200%;
+animation: movement 30s ease infinite alternate-reverse;
 }
-/* PLANTEN POT */
 
+/* 🚿 GIETER */
+
+.water-jar {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  background-color: var(--water-jar-color);
+  border-radius: 5px;
+  bottom: 235px;
+  left: 65px;
+  opacity: 0;
+  box-shadow: inset -9px 0 15px var(--water-jar-color);
+  animation: show 10s linear;
+}
+
+/* 🪴 PLANTENPOT */
+
+/* bottom of pot */
 .pot {
   position: absolute;
   width: 28%;
@@ -92,7 +123,7 @@ main {
   box-shadow: inset 0 16px 20px rgba(0, 0, 0, 0.3);
   z-index: 1000;
 }
-
+/* top of pot */
 .pot-top {
   position: absolute;
   width: 33.5%;
@@ -104,7 +135,7 @@ main {
   z-index: 1000;
 }
 
-/* STAM PLANT */
+/* 🪵 STAM */
 
 .stem {
   position: absolute;
@@ -117,7 +148,7 @@ main {
   transition: height 0.15s ease-out;
 }
 
-/* BLADEREN PLANT  */
+/* 🌿 BLADEREN */
 
 .leaf {
   position: absolute;
@@ -266,7 +297,7 @@ main {
   }
 }
 
-/* WATER GEVEN */
+/* 💦 WATER GEVEN */
 
 .water-jar:before {
   position: absolute;
@@ -289,8 +320,8 @@ main {
   left: -20px;
   border-radius: 20px 0 0 20px;
   background-color: transparent;
-  border: 5px solid #c5f;
-  box-shadow: 70px -4px 0 -6px #c6f;
+  border: 5px solid var(--water-jar-color);
+  box-shadow: 70px -4px 0 -6px var(--water-jar-color);
 }
 
 .water {
@@ -342,7 +373,7 @@ main {
   z-index: 1;
 }
 
-/* ZAADJE  */
+/* ZAADJE */
 
 .seed1 /* het zaadje */ {
   position: absolute;
@@ -370,7 +401,7 @@ main {
   }
 }
 
-/* ZON */
+/* 🌞 ZON */
 
 .sun {
   height: 0;
@@ -423,7 +454,7 @@ main {
   transform: rotate(60deg);
 }
 
-/* BLOEM */
+/* 🌸 BLOEM */
 
 .flower {
   position: absolute;
@@ -462,7 +493,7 @@ main {
   }
 }
 
-/* BLOEM - BLOEMBLAADJES  */
+/* 🌸 BLOEMBLAADJES  */
 
 .petal {
   position: absolute;
@@ -471,10 +502,10 @@ main {
   border-radius: 100% 0% 50% 50% /50% 0% 100% 50%;
   background: linear-gradient(
     185deg,
-    #941346 0%,
-    #e63b94 50%,
-    #ff5ab0 75%,
-    #ff7dc1 100%
+    #72c7bc 0%,
+    #97d6cd 50%,
+    #bbe4df 75%,
+    #e0f3f0 100%
   );
   opacity: 0;
   animation: petal 2s linear forwards;
@@ -551,18 +582,34 @@ button h3 {
   box-shadow: 3px 3px;
 }
 
-/* GROND */
+.error-state-button {
+  width: 30vw;
+  z-index: 10000;
+  display: inline;
+  padding: 1rem;
+  border-radius: 23px;
+  border: none;
+  color: white;
+  font-size: var(--font-size-p);
+  background-color:red;
+  position: fixed;
+  bottom: 45%;
+  margin: 2rem;
+}
 
+
+
+/* GROND */
 /* .ground {
   position: absolute;
   bottom: 0;
   width: 100vw;
   height: 47px;
-  background-color: greenyellow;
+  background-color:;
 }
 */
 
-/*  */
+/* Button states */
 
 .add-sun {
   display: none;
@@ -576,32 +623,40 @@ button h3 {
   display: none;
 }
 
-/* SUCCES BERICHT */
+/* 🥳 SUCCES BERICHT */
 
+/* The bottom part of the  fully grown plant message  */
 .plantje-volgroeid {
   position: absolute;
-  left: 28%;
-  top: 13%;
-  border: solid 1px white;
-  padding: 9px 23px;
+  left: 26%;
+  top: 24%;
+  border: solid 1px var(--secondary-color);
+  padding: 1rem;
   border-radius: 8px;
-  font-size: 22px;
+  font-size: var(--font-size-p);
   display: none;
+  z-index: 1000;
 }
 
+.plantje-volgroeid p a {
+  color: var(--primary-color);
+}
+
+/* The top part of the fully grown plant message  */
 .plantje-volgroeid:before {
   content: "Gefeliciteerd, het plantje is volgroeid!🥳";
-  font-size: 9px;
+  font-size: var(--font-size-p);
   position: absolute;
   top: -23px;
   left: 12%;
   background: #f26f21;
   color: white;
-  padding: 6px 14px;
+  padding: 0.2rem;
   border-radius: 8px 8px 0px 0px;
+  z-index: 1000;
 }
 
-/* BUTTONS */
+/* OG BUTTONS */
 /*
 .button-wrapper {
   border: 1px solid rgb(51, 173, 82);
