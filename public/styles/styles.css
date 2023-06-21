@@ -14,18 +14,20 @@
 }
 
 * {
+  font-family: Arial, Helvetica, sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
+background-color: var(--tertiairy-color); */
 }
 
 h1 {
   color: var(--primary-color);
-  font-family: var(--font-style-h1);
   font-size: var(--font-size-h1);
+  text-align: center;
 }
 
 h2 {
@@ -45,9 +47,6 @@ header {
   height: auto;
 }
 
-main {
-}
-
 .wrapper {
   position: absolute;
   bottom: 0;
@@ -62,14 +61,14 @@ main {
   height: 55px;
   background-color: #1e628c;
   border-radius: 5px;
-  bottom: 235px;
-  left: 65px;
+  bottom: 10%;
+  left: 40%;
   opacity: 0;
   box-shadow: inset -9px 0 15px #1e628c;
   animation: show 10s linear;
 }
 
-.box {
+.plant-box {
   position: relative;
   margin: auto;
   display: block;
@@ -80,7 +79,7 @@ main {
 }
 /* PLANTEN POT */
 
-.pot {
+/* .pot {
   position: absolute;
   width: 28%;
   height: 14%;
@@ -102,7 +101,7 @@ main {
   background: #fcaa67;
   border-radius: 3px;
   z-index: 1000;
-}
+} */
 
 /* STAM PLANT */
 
@@ -111,7 +110,7 @@ main {
   width: 2%;
   height: 15%;
   left: 49%;
-  bottom: 19%;
+  bottom: 4.2%;
   background: var(--primary-color);
   display: none;
   transition: height 0.15s ease-out;
@@ -191,7 +190,7 @@ main {
   }
 
   100% {
-    bottom: 20%;
+    bottom: 4.2%;
     width: 2%;
   }
 }
@@ -299,8 +298,8 @@ main {
   height: 50px;
   border-radius: 50% 50% 0 0;
   border-right: 4px dashed #0bf;
-  bottom: 180px;
-  left: 115px;
+  bottom: 5%;
+  left: 44%;
   z-index: 1;
   opacity: 0;
   animation: water 5s linear;
@@ -377,7 +376,7 @@ main {
   width: 0;
   position: absolute;
   top: 25%;
-  left: 15%;
+  right: 15%;
 }
 
 .circle {
@@ -432,7 +431,7 @@ main {
   margin: 0 auto;
   width: 50px;
   transform: rotate(180deg);
-  top: 62%;
+  top: 76.8%;
   z-index: 1;
 }
 
@@ -462,7 +461,7 @@ main {
   }
 }
 
-/* BLOEM - BLOEMBLAADJES  */
+/* FLOWER PETAL */
 
 .petal {
   position: absolute;
@@ -528,101 +527,155 @@ main {
   transform: rotate(300deg);
 }
 
-/* BUTTON */
+/* BUTTON INTERACTION */
 
-button {
+.action-btn {
   position: absolute;
   bottom: 0;
   width: 100vw;
   z-index: 10000;
   display: flex;
   justify-content: center;
-  background-color: #a9ddd6;
+  background-color: rgb(129, 95, 43);
   border: none;
 }
 
-button h3 {
+.action-btn span {
   border: solid 1px;
   padding: 10px 30px;
-  border-radius: 23px;
+  font-weight: 600;
+  border-radius: 5px;
   background-color: #4e7141;
   color: white;
   margin: 10px 0px;
   box-shadow: 3px 3px;
 }
 
-/* GROND */
-
-/* .ground {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  height: 47px;
-  background-color: greenyellow;
+.action-btn svg {
+  stroke: var(--primary-color);
+  width: 1rem;
 }
-*/
 
-/*  */
-
-.add-sun {
+.add-sun-button {
   display: none;
 }
 
-.add-water {
+#add-water-button {
   display: none;
 }
 
-.add-more-water {
+#add-more-water-button {
   display: none;
 }
 
 /* SUCCES BERICHT */
 
-.plantje-volgroeid {
+.succes-message {
   position: absolute;
   left: 28%;
-  top: 13%;
-  border: solid 1px white;
+  top: 25%;
   padding: 9px 23px;
   border-radius: 8px;
   font-size: 22px;
   display: none;
 }
 
-.plantje-volgroeid:before {
-  content: "Gefeliciteerd, het plantje is volgroeid!🥳";
+.succes-message:before {
+  content: "Gefeliciteerd, het plantje is volgroeid!";
   font-size: 9px;
   position: absolute;
   top: -23px;
   left: 12%;
   background: #f26f21;
   color: white;
-  padding: 6px 14px;
+  padding: 8px 14px;
   border-radius: 8px 8px 0px 0px;
 }
 
-/* BUTTONS */
-/*
-.button-wrapper {
-  border: 1px solid rgb(51, 173, 82);
+/* ASIDE SECTION  */
+
+.status-field {
+  margin: 1rem;
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  padding: 1rem;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 20rem;
+  height: 30rem;
+  background-color: rgb(236, 243, 237);
+  box-shadow: rgba(2, 77, 47, 0.2) 0px 2px 8px 0px;
 }
 
-.button-wrapper button {
-  display: flex;
-  width: 10rem;
-  height: auto;
-  padding: 0.5rem;
-  align-items: center;
-  flex-direction: column;
+.status-field h3 {
+  padding: 1rem;
+  font-weight: lighter;
+  font-size: 1.5rem;
+  text-align: center;
   color: var(--primary-color);
 }
 
-.button-wrapper svg {
-  stroke: var(--primary-color);
-  width: 1rem;
+.status-field ul {
+  padding: 0.5em;
+  list-style-type: none;
+  width: 100%;
+  flex-grow: 2;
+  overflow-y: scroll;
 }
-*/
+
+.status-field ul > li {
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.status-field form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-color);
+  padding: 1rem 1rem;
+  background: var(--white);
+  width: 100%;
+  height: 2rem;
+}
+
+.status-field input[type="text"]:focus {
+  color: var(--dark);
+  outline: 0;
+}
+
+.status-field form input[type="text"] {
+  background-color: rgb(236, 243, 237);
+  border: 0;
+  opacity: 80%;
+  outline: none;
+}
+
+.status-field form input[type="text"]::placeholder {
+  color: var(--secondary-color);
+}
+
+.status-field button {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+}
+
+.status-field button span {
+  color: var(--tertiairy-color);
+}
+
+.status-field button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.status-field li {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}

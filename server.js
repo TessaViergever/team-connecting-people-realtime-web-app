@@ -11,19 +11,19 @@ import indexRoute from "./routes/index.js";
 import tamagotchiRoute from "./routes/tamagotchi.js";
 
 // Start de socket.io server op
-ioServer.on("connection", (socket) => {
+ioServer.on("connection", (client) => {
+  console.log(`user ${client.id} connected`);
 
-  console.log("a user connected");
-
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
+  // Luister naar een disconnect van een gebruiker
+  client.on("disconnect", () => {
+    console.log(`user ${client.id} disconnected`);
   });
 
   // stuurt step naar alle clients verbonden met socket
-  socket.on('step', (step) => {
-    ioServer.emit('step' , step)
+  client.on("step", (step) => {
+    console.log(step);
+    ioServer.emit("step", step);
   });
-
 });
 
 // Stel de views in
